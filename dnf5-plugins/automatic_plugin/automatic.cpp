@@ -281,11 +281,11 @@ void AutomaticCommand::pre_configure() {
 
     // read the config files in following order (/etc overrides /usr):
     //      - [installroot]/usr/share/dnf5/dnf5-plugins/automatic.conf
-    //      - [installroot]/etc/dnf/dnf5-plugins/automatic.conf
+    //      - [installroot]/etc/dnf/automatic.conf
     auto & main_config = base.get_config();
     bool use_host_config{main_config.get_use_host_config_option().get_value()};
     std::filesystem::path installroot_path{main_config.get_installroot_option().get_value()};
-    std::vector<std::filesystem::path> possible_paths{"/usr/share/dnf5/dnf5-plugins", "/etc/dnf/dnf5-plugins"};
+    std::vector<std::filesystem::path> possible_paths{"/usr/share/dnf5/dnf5-plugins", "/etc/dnf"};
     for (const auto & pth : possible_paths) {
         std::filesystem::path conf_file_path{pth / "automatic.conf"};
         if (!use_host_config) {
