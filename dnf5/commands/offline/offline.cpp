@@ -29,6 +29,7 @@ along with libdnf.  If not, see <https://www.gnu.org/licenses/>.
 #include <libdnf5/base/goal.hpp>
 #include <libdnf5/conf/const.hpp>
 #include <libdnf5/conf/option_path.hpp>
+#include <libdnf5/rpm/transaction_callbacks.hpp>
 #include <libdnf5/transaction/offline.hpp>
 #include <libdnf5/utils/bgettext/bgettext-lib.h>
 #include <libdnf5/utils/bgettext/bgettext-mark-domain.h>
@@ -129,7 +130,7 @@ class PlymouthTransCB : public RpmTransCB {
 public:
     PlymouthTransCB(Context & context, PlymouthOutput plymouth) : RpmTransCB(context), plymouth(std::move(plymouth)) {}
     void elem_progress(
-        [[maybe_unused]] const libdnf5::rpm::TransactionItem & item,
+        [[maybe_unused]] const libdnf5::base::TransactionPackage & item,
         [[maybe_unused]] uint64_t amount,
         [[maybe_unused]] uint64_t total) override {
         RpmTransCB::elem_progress(item, amount, total);
