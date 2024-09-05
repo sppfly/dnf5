@@ -383,3 +383,8 @@ void Session::store_transaction_offline() {
 
     state.write();
 }
+
+void Session::reset_goal() {
+    transaction.reset(nullptr);
+    goal.reset();
+}
