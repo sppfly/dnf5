@@ -315,6 +315,9 @@ sdbus::MethodReply Goal::do_transaction(sdbus::MethodCall & call) {
         // TODO(mblaha): clean up downloaded packages after successful transaction
     }
 
+    // reset the goal and the transaction
+    session.reset_goal();
+
     auto reply = call.createReply();
     return reply;
 }
